@@ -79,3 +79,19 @@
 //                   ),
 //                 ),
 //               );
+
+
+
+
+                    // List<Widget> genres = state.data!.movies![index].genres!
+                    //     .map(
+                    //       (e) => Text(
+                    //         "$e ",
+                    //         style: const TextStyle(
+                    //           color: Color.fromARGB(255, 188, 188, 188),
+                    //           fontSize: 10,
+                    //           fontWeight: FontWeight.bold,
+                    //         ),
+                    //       ),
+                    //     )
+                    //     .toList();

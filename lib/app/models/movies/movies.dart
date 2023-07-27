@@ -1,11 +1,11 @@
-class Movie {
+class AllMovie {
   String? status;
   String? statusMessage;
   Data? data;
 
-  Movie({this.status, this.statusMessage, this.data});
+  AllMovie({this.status, this.statusMessage, this.data});
 
-  Movie.fromJson(Map<String, dynamic> json) {
+  AllMovie.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     statusMessage = json['status_message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;

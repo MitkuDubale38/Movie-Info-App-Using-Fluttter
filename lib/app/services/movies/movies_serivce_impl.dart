@@ -21,4 +21,22 @@ class MoviesServices implements IMoviesServices {
       return ExceptionHandler().getExceptionString(ex);
     }
   }
+
+  @override
+  Future fetchMovieByID(int id) async {
+    try {
+      final response = await http
+          .get(Uri.parse(
+              'https://yts.mx/api/v2/movie_details.json?movie_id=$id'))
+          .timeout(
+        const Duration(seconds: 100),
+        onTimeout: () {
+          throw ConnectionTimedOutException();
+        },
+      );
+      return processHttpResponse(response);
+    } on Exception catch (ex) {
+      return ExceptionHandler().getExceptionString(ex);
+    }
+  }
 }
