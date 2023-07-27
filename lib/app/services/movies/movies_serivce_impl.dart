@@ -9,7 +9,7 @@ class MoviesServices implements IMoviesServices {
   Future<dynamic> fetchMovies() async {
     try {
       final response = await http
-          .get(Uri.parse('https://yts.mx/api/v2/list_movies.json'))
+          .get(Uri.parse('https://yts.mx/api/v2/list_movies.json?sort=rating'))
           .timeout(
         const Duration(seconds: 100),
         onTimeout: () {

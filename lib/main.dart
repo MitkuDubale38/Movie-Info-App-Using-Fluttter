@@ -5,10 +5,9 @@ import 'package:moviedbapp/app/view/movies/screens/movies.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    systemNavigationBarColor:
-        Color.fromARGB(255, 30, 30, 30), // navigation bar color
-    statusBarColor: Color.fromARGB(255, 30, 30, 30), // status bar color
-  ));
+      systemNavigationBarColor:
+          Color.fromARGB(255, 30, 30, 30), // navigation bar color
+      statusBarColor: Colors.transparent));
   runApp(MyApp());
 }
 
