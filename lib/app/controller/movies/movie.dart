@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:moviedbapp/app/models/movies/movie.dart';
-import 'package:moviedbapp/app/models/movies/movies.dart';
 import 'package:moviedbapp/app/services/movies/movies_serivce_impl.dart';
 import 'package:http/http.dart' as http;
 

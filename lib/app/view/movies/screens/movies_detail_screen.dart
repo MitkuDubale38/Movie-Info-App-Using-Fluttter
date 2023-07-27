@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moviedbapp/app/controller/movies/movie.dart';
 import 'package:moviedbapp/app/controller/movies/video_player.dart';
+import 'package:moviedbapp/utils/hour_convertor.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+// ignore: must_be_immutable
 class Detail extends StatelessWidget {
   Detail({
     super.key,
@@ -26,7 +28,7 @@ class Detail extends StatelessWidget {
                   child: Text(
                     "$e ",
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 200, 128, 2),
                       fontWeight: FontWeight.bold,
                       fontSize: 13,
                       fontFamily: 'Times New Roman',
@@ -36,6 +38,10 @@ class Detail extends StatelessWidget {
                 ),
               )
               .toList();
+
+          final String humanReadableMovieLength =
+              HourConverter.convertToHumanForm(
+                  movieCtrl.movie!.data!.movie!.runtime!);
           return SingleChildScrollView(
             child: Column(
               children: [
@@ -72,6 +78,22 @@ class Detail extends StatelessWidget {
                       ),
                     ),
                     Positioned(
+                        top: 30,
+                        left: 10,
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: const CircleAvatar(
+                            backgroundColor: Color.fromARGB(255, 87, 87, 87),
+                            child: Icon(
+                              Icons.chevron_left,
+                              color: Colors.white,
+                              size: 32,
+                            ),
+                          ),
+                        )),
+                    Positioned(
                       left: MediaQuery.sizeOf(context).width * 0.33,
                       bottom: 20,
                       child: Container(
@@ -83,8 +105,7 @@ class Detail extends StatelessWidget {
                         ),
                         child: GestureDetector(
                           onTap: () {
-                            videoCtrl
-                                .playVideo(movieCtrl.movie!.data!.movie!.url!);
+                            videoCtrl.controller!.play();
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -115,6 +136,21 @@ class Detail extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      movieCtrl.movie!.data!.movie!.title!,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Times New Roman',
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -137,20 +173,41 @@ class Detail extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      "Description",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Times New Roman',
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          "Description",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Times New Roman',
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                    Visibility(
+                      visible: movieCtrl.movie!.data!.movie!.runtime! > 0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          humanReadableMovieLength,
+                          textAlign: TextAlign.justify,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 179, 179, 179),
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            fontFamily: 'Times New Roman',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -158,12 +215,61 @@ class Detail extends StatelessWidget {
                     movieCtrl.movie!.data!.movie!.descriptionFull.toString(),
                     textAlign: TextAlign.justify,
                     style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255),
+                      color: Color.fromARGB(255, 179, 179, 179),
                       fontSize: 16,
                       fontWeight: FontWeight.normal,
                       fontFamily: 'Times New Roman',
                     ),
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            " Total Downloads: ",
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Times New Roman',
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            movieCtrl.movie!.data!.movie!.downloadCount
+                                .toString(),
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 179, 179, 179),
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Times New Roman',
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        movieCtrl.movie!.data!.movie!.slug.toString(),
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 179, 179, 179),
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                          fontFamily: 'Times New Roman',
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 YoutubePlayer(
                   controller: videoCtrl.controller!,
@@ -172,6 +278,9 @@ class Detail extends StatelessWidget {
                   onReady: () {
                     videoCtrl.playVideo(movieCtrl.movie!.data!.movie!.url!);
                   },
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             ),

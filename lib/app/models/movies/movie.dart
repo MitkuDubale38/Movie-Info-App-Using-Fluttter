@@ -9,19 +9,19 @@ class Movie {
   Movie.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     statusMessage = json['status_message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
-    meta = json['@meta'] != null ? new Meta.fromJson(json['@meta']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    meta = json['@meta'] != null ? Meta.fromJson(json['@meta']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['status_message'] = this.statusMessage;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['status_message'] = statusMessage;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    if (this.meta != null) {
-      data['@meta'] = this.meta!.toJson();
+    if (meta != null) {
+      data['@meta'] = meta!.toJson();
     }
     return data;
   }
@@ -34,13 +34,13 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     movie =
-        json['movie'] != null ? new MovieDetail.fromJson(json['movie']) : null;
+        json['movie'] != null ? MovieDetail.fromJson(json['movie']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.movie != null) {
-      data['movie'] = this.movie!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (movie != null) {
+      data['movie'] = movie!.toJson();
     }
     return data;
   }
@@ -129,7 +129,7 @@ class MovieDetail {
     if (json['torrents'] != null) {
       torrents = <Torrents>[];
       json['torrents'].forEach((v) {
-        torrents!.add(new Torrents.fromJson(v));
+        torrents!.add(Torrents.fromJson(v));
       });
     }
     dateUploaded = json['date_uploaded'];
@@ -137,35 +137,35 @@ class MovieDetail {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
-    data['imdb_code'] = this.imdbCode;
-    data['title'] = this.title;
-    data['title_english'] = this.titleEnglish;
-    data['title_long'] = this.titleLong;
-    data['slug'] = this.slug;
-    data['year'] = this.year;
-    data['rating'] = this.rating;
-    data['runtime'] = this.runtime;
-    data['genres'] = this.genres;
-    data['download_count'] = this.downloadCount;
-    data['like_count'] = this.likeCount;
-    data['description_intro'] = this.descriptionIntro;
-    data['description_full'] = this.descriptionFull;
-    data['yt_trailer_code'] = this.ytTrailerCode;
-    data['language'] = this.language;
-    data['mpa_rating'] = this.mpaRating;
-    data['background_image'] = this.backgroundImage;
-    data['background_image_original'] = this.backgroundImageOriginal;
-    data['small_cover_image'] = this.smallCoverImage;
-    data['medium_cover_image'] = this.mediumCoverImage;
-    data['large_cover_image'] = this.largeCoverImage;
-    if (this.torrents != null) {
-      data['torrents'] = this.torrents!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['url'] = url;
+    data['imdb_code'] = imdbCode;
+    data['title'] = title;
+    data['title_english'] = titleEnglish;
+    data['title_long'] = titleLong;
+    data['slug'] = slug;
+    data['year'] = year;
+    data['rating'] = rating;
+    data['runtime'] = runtime;
+    data['genres'] = genres;
+    data['download_count'] = downloadCount;
+    data['like_count'] = likeCount;
+    data['description_intro'] = descriptionIntro;
+    data['description_full'] = descriptionFull;
+    data['yt_trailer_code'] = ytTrailerCode;
+    data['language'] = language;
+    data['mpa_rating'] = mpaRating;
+    data['background_image'] = backgroundImage;
+    data['background_image_original'] = backgroundImageOriginal;
+    data['small_cover_image'] = smallCoverImage;
+    data['medium_cover_image'] = mediumCoverImage;
+    data['large_cover_image'] = largeCoverImage;
+    if (torrents != null) {
+      data['torrents'] = torrents!.map((v) => v.toJson()).toList();
     }
-    data['date_uploaded'] = this.dateUploaded;
-    data['date_uploaded_unix'] = this.dateUploadedUnix;
+    data['date_uploaded'] = dateUploaded;
+    data['date_uploaded_unix'] = dateUploadedUnix;
     return data;
   }
 }
@@ -220,21 +220,21 @@ class Torrents {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['hash'] = this.hash;
-    data['quality'] = this.quality;
-    data['type'] = this.type;
-    data['is_repack'] = this.isRepack;
-    data['video_codec'] = this.videoCodec;
-    data['bit_depth'] = this.bitDepth;
-    data['audio_channels'] = this.audioChannels;
-    data['seeds'] = this.seeds;
-    data['peers'] = this.peers;
-    data['size'] = this.size;
-    data['size_bytes'] = this.sizeBytes;
-    data['date_uploaded'] = this.dateUploaded;
-    data['date_uploaded_unix'] = this.dateUploadedUnix;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['hash'] = hash;
+    data['quality'] = quality;
+    data['type'] = type;
+    data['is_repack'] = isRepack;
+    data['video_codec'] = videoCodec;
+    data['bit_depth'] = bitDepth;
+    data['audio_channels'] = audioChannels;
+    data['seeds'] = seeds;
+    data['peers'] = peers;
+    data['size'] = size;
+    data['size_bytes'] = sizeBytes;
+    data['date_uploaded'] = dateUploaded;
+    data['date_uploaded_unix'] = dateUploadedUnix;
     return data;
   }
 }
@@ -259,11 +259,11 @@ class Meta {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['server_time'] = this.serverTime;
-    data['server_timezone'] = this.serverTimezone;
-    data['api_version'] = this.apiVersion;
-    data['execution_time'] = this.executionTime;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['server_time'] = serverTime;
+    data['server_timezone'] = serverTimezone;
+    data['api_version'] = apiVersion;
+    data['execution_time'] = executionTime;
     return data;
   }
 }

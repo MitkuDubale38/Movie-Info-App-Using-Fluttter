@@ -13,8 +13,8 @@ class AllMovie {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = this.status;
-    data['status_message'] = this.statusMessage;
+    data['status'] = status;
+    data['status_message'] = statusMessage;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -37,18 +37,18 @@ class Data {
     if (json['movies'] != null) {
       movies = <Movies>[];
       json['movies'].forEach((v) {
-        movies!.add(new Movies.fromJson(v));
+        movies!.add(Movies.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['movie_count'] = this.movieCount;
-    data['limit'] = this.limit;
-    data['page_number'] = this.pageNumber;
-    if (this.movies != null) {
-      data['movies'] = this.movies!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['movie_count'] = movieCount;
+    data['limit'] = limit;
+    data['page_number'] = pageNumber;
+    if (movies != null) {
+      data['movies'] = movies!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -137,7 +137,7 @@ class Movies {
     if (json['torrents'] != null) {
       torrents = <Torrents>[];
       json['torrents'].forEach((v) {
-        torrents!.add(new Torrents.fromJson(v));
+        torrents!.add(Torrents.fromJson(v));
       });
     }
     dateUploaded = json['date_uploaded'];
@@ -145,35 +145,35 @@ class Movies {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['url'] = this.url;
-    data['imdb_code'] = this.imdbCode;
-    data['title'] = this.title;
-    data['title_english'] = this.titleEnglish;
-    data['title_long'] = this.titleLong;
-    data['slug'] = this.slug;
-    data['year'] = this.year;
-    data['rating'] = this.rating;
-    data['runtime'] = this.runtime;
-    data['genres'] = this.genres;
-    data['summary'] = this.summary;
-    data['description_full'] = this.descriptionFull;
-    data['synopsis'] = this.synopsis;
-    data['yt_trailer_code'] = this.ytTrailerCode;
-    data['language'] = this.language;
-    data['mpa_rating'] = this.mpaRating;
-    data['background_image'] = this.backgroundImage;
-    data['background_image_original'] = this.backgroundImageOriginal;
-    data['small_cover_image'] = this.smallCoverImage;
-    data['medium_cover_image'] = this.mediumCoverImage;
-    data['large_cover_image'] = this.largeCoverImage;
-    data['state'] = this.state;
-    if (this.torrents != null) {
-      data['torrents'] = this.torrents!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['url'] = url;
+    data['imdb_code'] = imdbCode;
+    data['title'] = title;
+    data['title_english'] = titleEnglish;
+    data['title_long'] = titleLong;
+    data['slug'] = slug;
+    data['year'] = year;
+    data['rating'] = rating;
+    data['runtime'] = runtime;
+    data['genres'] = genres;
+    data['summary'] = summary;
+    data['description_full'] = descriptionFull;
+    data['synopsis'] = synopsis;
+    data['yt_trailer_code'] = ytTrailerCode;
+    data['language'] = language;
+    data['mpa_rating'] = mpaRating;
+    data['background_image'] = backgroundImage;
+    data['background_image_original'] = backgroundImageOriginal;
+    data['small_cover_image'] = smallCoverImage;
+    data['medium_cover_image'] = mediumCoverImage;
+    data['large_cover_image'] = largeCoverImage;
+    data['state'] = state;
+    if (torrents != null) {
+      data['torrents'] = torrents!.map((v) => v.toJson()).toList();
     }
-    data['date_uploaded'] = this.dateUploaded;
-    data['date_uploaded_unix'] = this.dateUploadedUnix;
+    data['date_uploaded'] = dateUploaded;
+    data['date_uploaded_unix'] = dateUploadedUnix;
     return data;
   }
 }
@@ -228,21 +228,21 @@ class Torrents {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['url'] = this.url;
-    data['hash'] = this.hash;
-    data['quality'] = this.quality;
-    data['type'] = this.type;
-    data['is_repack'] = this.isRepack;
-    data['video_codec'] = this.videoCodec;
-    data['bit_depth'] = this.bitDepth;
-    data['audio_channels'] = this.audioChannels;
-    data['seeds'] = this.seeds;
-    data['peers'] = this.peers;
-    data['size'] = this.size;
-    data['size_bytes'] = this.sizeBytes;
-    data['date_uploaded'] = this.dateUploaded;
-    data['date_uploaded_unix'] = this.dateUploadedUnix;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['url'] = url;
+    data['hash'] = hash;
+    data['quality'] = quality;
+    data['type'] = type;
+    data['is_repack'] = isRepack;
+    data['video_codec'] = videoCodec;
+    data['bit_depth'] = bitDepth;
+    data['audio_channels'] = audioChannels;
+    data['seeds'] = seeds;
+    data['peers'] = peers;
+    data['size'] = size;
+    data['size_bytes'] = sizeBytes;
+    data['date_uploaded'] = dateUploaded;
+    data['date_uploaded_unix'] = dateUploadedUnix;
     return data;
   }
 }
