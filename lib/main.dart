@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:moviedbapp/app/view/movies/screens/movies.dart';
 
-void main() => runApp(
-      MyApp(),
-    );
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    systemNavigationBarColor:
+        Color.fromARGB(255, 30, 30, 30), // navigation bar color
+    statusBarColor: Color.fromARGB(255, 30, 30, 30), // status bar color
+  ));
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,7 +20,6 @@ class MyApp extends StatelessWidget {
       title: 'Movies App',
       theme: ThemeData(
         primarySwatch: Colors.teal,
-        useMaterial3: true,
       ),
       home: Home(),
     );

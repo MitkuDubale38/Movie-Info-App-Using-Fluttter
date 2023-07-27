@@ -19,7 +19,7 @@ class Detail extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: Image.network(
-                movieCtrl.movie!.data!.movie!.largeCoverImage!,
+                movieCtrl.movie!.data!.movie!.mediumCoverImage!,
                 fit: BoxFit.cover,
                 height: MediaQuery.sizeOf(context).height * 0.60,
               ),
