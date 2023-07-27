@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:moviedbapp/app/controller/movies/movie.dart';
 import 'package:moviedbapp/app/controller/movies/video_player.dart';
 import 'package:moviedbapp/utils/hour_convertor.dart';
@@ -42,6 +43,9 @@ class Detail extends StatelessWidget {
           final String humanReadableMovieLength =
               HourConverter.convertToHumanForm(
                   movieCtrl.movie!.data!.movie!.runtime!);
+          var format = DateFormat.yMMMEd();
+          var releasedDate = format.format(
+              DateTime.parse(movieCtrl.movie!.data!.movie!.dateUploaded!));
           return SingleChildScrollView(
             child: Column(
               children: [
@@ -230,11 +234,11 @@ class Detail extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.all(8.0),
                           child: Text(
-                            " Total Downloads: ",
+                            "Downloads: ",
                             textAlign: TextAlign.justify,
                             style: TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.normal,
                               fontFamily: 'Times New Roman',
                             ),
@@ -248,7 +252,7 @@ class Detail extends StatelessWidget {
                             textAlign: TextAlign.justify,
                             style: const TextStyle(
                               color: Color.fromARGB(255, 179, 179, 179),
-                              fontSize: 16,
+                              fontSize: 14,
                               fontWeight: FontWeight.normal,
                               fontFamily: 'Times New Roman',
                             ),
@@ -256,18 +260,35 @@ class Detail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        movieCtrl.movie!.data!.movie!.slug.toString(),
-                        textAlign: TextAlign.justify,
-                        style: const TextStyle(
-                          color: Color.fromARGB(255, 179, 179, 179),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Times New Roman',
+                    Row(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            "Released on:  ",
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Times New Roman',
+                            ),
+                          ),
                         ),
-                      ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            releasedDate,
+                            textAlign: TextAlign.justify,
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 200, 128, 2),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              fontFamily: 'Times New Roman',
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -286,7 +307,7 @@ class Detail extends StatelessWidget {
             ),
           );
         },
-        onLoading: const CircularProgressIndicator(),
+        onLoading: const Center(child: CircularProgressIndicator()),
         onEmpty: const Text('No data found'),
         onError: (error) => Text(error!),
       ),
