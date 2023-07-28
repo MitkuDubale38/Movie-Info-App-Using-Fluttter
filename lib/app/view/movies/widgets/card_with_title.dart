@@ -37,7 +37,7 @@ class CardWithTitle extends StatelessWidget {
                   color: Color.fromARGB(255, 255, 255, 255),
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Helvetica',
                 ),
               ),
               const Text(
@@ -107,7 +107,7 @@ class CardWithTitle extends StatelessWidget {
                                     color: Color.fromARGB(255, 21, 21, 21),
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
-                                    fontFamily: 'Times New Roman',
+                                    fontFamily: 'Helvetica',
                                   ),
                                 ),
                               ),

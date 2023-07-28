@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
                     const Color.fromARGB(255, 59, 59, 59).withOpacity(0.5),
                 child: const Icon(
                   Icons.search,
-                  color: Color.fromARGB(255, 140, 140, 140),
+                  color: Color.fromARGB(255, 255, 255, 255),
                 )),
           ),
         ],
