@@ -1,3 +1,4 @@
+import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -100,37 +101,40 @@ class Detail extends StatelessWidget {
                     Positioned(
                       left: MediaQuery.sizeOf(context).width * 0.33,
                       bottom: 20,
-                      child: Container(
-                        height: 40,
-                        width: 140,
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 87, 87, 87),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            videoCtrl.controller!.play();
-                          },
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                                size: 18,
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Text(
-                                "Play",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 255, 255, 255),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                      child: DelayedDisplay(
+                        delay: const Duration(seconds: 1),
+                        child: Container(
+                          height: 40,
+                          width: 140,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 87, 87, 87),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              videoCtrl.controller!.play();
+                            },
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.play_arrow,
+                                  color: Colors.white,
+                                  size: 18,
                                 ),
-                              ),
-                            ],
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "Play",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -155,26 +159,29 @@ class Detail extends StatelessWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      const Text(
-                        "Genres: ",
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Times New Roman',
+                DelayedDisplay(
+                  delay: const Duration(seconds: 1),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        const Text(
+                          "Genres: ",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
+                            fontFamily: 'Times New Roman',
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: genres,
+                        Expanded(
+                          child: Row(
+                            children: genres,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 Row(
@@ -213,16 +220,19 @@ class Detail extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    movieCtrl.movie!.data!.movie!.descriptionFull.toString(),
-                    textAlign: TextAlign.justify,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 179, 179, 179),
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Times New Roman',
+                DelayedDisplay(
+                  delay: const Duration(seconds: 1),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      movieCtrl.movie!.data!.movie!.descriptionFull.toString(),
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 179, 179, 179),
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Times New Roman',
+                      ),
                     ),
                   ),
                 ),
@@ -292,16 +302,19 @@ class Detail extends StatelessWidget {
                     ),
                   ],
                 ),
-                YoutubePlayer(
-                  controller: videoCtrl.controller!,
-                  showVideoProgressIndicator: true,
-                  progressIndicatorColor: Colors.amber,
-                  onReady: () {
-                    videoCtrl.playVideo(movieCtrl.movie!.data!.movie!.url!);
-                  },
+                DelayedDisplay(
+                  delay: const Duration(seconds: 1),
+                  child: YoutubePlayer(
+                    controller: videoCtrl.controller!,
+                    showVideoProgressIndicator: true,
+                    progressIndicatorColor: Colors.amber,
+                    onReady: () {
+                      videoCtrl.playVideo(movieCtrl.movie!.data!.movie!.url!);
+                    },
+                  ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
               ],
             ),

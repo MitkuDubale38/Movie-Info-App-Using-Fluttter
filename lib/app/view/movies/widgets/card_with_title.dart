@@ -79,12 +79,16 @@ class CardWithTitle extends StatelessWidget {
                         child: Stack(
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.circular(10.0),
-                              child: Image.network(
-                                state.data!.movies![index].mediumCoverImage!,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
+                                borderRadius: BorderRadius.circular(10.0),
+                                child: state.data!.movies![index]
+                                            .mediumCoverImage !=
+                                        null
+                                    ? Image.network(
+                                        state.data!.movies![index]
+                                            .mediumCoverImage!,
+                                        fit: BoxFit.fitHeight,
+                                      )
+                                    : const SizedBox()),
                             Positioned(
                                 child: Container(
                               width: 40,
